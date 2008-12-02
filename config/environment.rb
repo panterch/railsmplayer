@@ -22,7 +22,6 @@ Rails::Initializer.run do |config|
 
   # Specify gems that this application depends on. 
   # They can then be installed with "rake gems:install" on new installations.
-  config.gem "haml"
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "aws-s3", :lib => "aws/s3"
 
@@ -68,12 +67,14 @@ Rails::Initializer.run do |config|
 
   FIFO_NAME = '/tmp/railsmplayer'
   DEFAULT_URL = 'http://deepmix.ru/deepmix128.pls'
+  MPLAYER_OPT = '-slave -quiet -ao alsa -mixer-channel Master'
+
   `mkfifo #{FIFO_NAME}` unless File.exists? FIFO_NAME
   Thread.new do
-    `mplayer -slave -input file=#{FIFO_NAME} #{DEFAULT_URL}`  
+    while true do
+      `mplayer #{MPLAYER_OPT} -input file=#{FIFO_NAME} #{DEFAULT_URL}`  
+      RAILS_DEFAULT_LOGGER.warn 'mplayer died - restarting'
+    end
   end
-  puts 'Continuing'
-
-
 
 end

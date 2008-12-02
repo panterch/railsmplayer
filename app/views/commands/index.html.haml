@@ -1,1 +1,13 @@
-Commands index
+
+=h("..:: Good music 24/7 ::..")
+
+.pause
+  =link_to_remote "[I] Pause / Play", :url => { :action => "pause" }
+.up
+  =link_to_remote "[A] Volume Up", :url => { :action => "volume_up" }
+.down
+  =link_to_remote "[V] Volume Down", :url => { :action => "volume_down" }
+.url
+  =link_to_remote "[>] Change channel to:", :url => { :action => "play" }, :with => "'url=' + $F('url')"
+  =text_field_tag 'url'
+
