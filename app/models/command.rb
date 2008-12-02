@@ -1,7 +1,7 @@
 class Command
 
-  FIFO = File.new(FIFO_NAME, 'a')
-  LOG = RAILS_DEFAULT_LOGGER
+  @@FIFO = File.new(FIFO_NAME, 'a')
+  @@LOG = RAILS_DEFAULT_LOGGER
 
   attr_accessor(:call)
 
@@ -10,9 +10,9 @@ class Command
   end
 
   def execute
-    LOG.info("executing #{sanitized_call}")
-    FIFO.print("#{sanitized_call}\n")
-    FIFO.flush
+    @@LOG.info("executing #{sanitized_call}")
+    @@FIFO.print("#{sanitized_call}\n")
+    @@FIFO.flush
   end
 
   def sanitized_call

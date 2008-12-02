@@ -8,6 +8,9 @@
 .down
   =link_to_remote "[V] Volume Down", :url => { :action => "volume_down" }
 .url
-  =link_to_remote "[>] Change channel to:", :url => { :action => "play" }, :with => "'url=' + $F('url')"
+  =link_to_remote "[>] Change channel to:", :update => 'recent', :url => { :action => "play" }, :with => "'url=' + $F('url')"
   =text_field_tag 'url'
+
+#recent
+  = render :partial => 'recent'
 

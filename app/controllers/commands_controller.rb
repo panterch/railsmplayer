@@ -128,10 +128,13 @@ class CommandsController < ApplicationController
   end
 
   def play
+    RECENTLY_PLAYED.insert(0, params[:url])
+    RECENTLY_PLAYED.uniq!
+
     Command.new('loadfile '+params[:url]).execute
-    render_nothing
+    render :partial => 'recent'
   end
-   
+
   protected
 
     def render_nothing
