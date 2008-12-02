@@ -16,7 +16,7 @@ class Command
   end
 
   def sanitized_call
-    @call.gsub /[^\w\.\-\/\?\ ]/, ''
+    @call.gsub /[^\w\.\:\-\/\?\ ]/, ''
   end
 
 end
