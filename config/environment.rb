@@ -64,4 +64,16 @@ Rails::Initializer.run do |config|
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
+
+
+  FIFO_NAME = '/tmp/railsmplayer'
+  DEFAULT_URL = 'http://deepmix.ru/deepmix128.pls'
+  `mkfifo #{FIFO_NAME}` unless File.exists? FIFO_NAME
+  Thread.new do
+    `mplayer -slave -input file=#{FIFO_NAME} #{DEFAULT_URL}`  
+  end
+  puts 'Continuing'
+
+
+
 end
