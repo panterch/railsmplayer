@@ -10,18 +10,32 @@ a:visited  { text-decoration: none }
 a:active  { text-decoration: none }
 a:hover  { text-decoration: none }
 
-div:hover {
-  background-color: yellow;
+h1 {
+  font-size: 50px;
+  text-align: center;
 }
 
 input {
   font-family: "Courier New", Courier, mono;
-  font-size: 50px;
-  font-weight: bold;
+  font-size: 24px;
 }
 
 #recent {
+  text-align: center;
   margin-top: 50px;
   font-size: 24px;
 }
 
+.url {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 24px;
+}
+
+.control {
+  text-align: center;
+}
+
+.control a:hover {
+  background-color: yellow;
+}

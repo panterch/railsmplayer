@@ -127,6 +127,16 @@ class CommandsController < ApplicationController
     render_nothing
   end
 
+  def seek_left
+    Command.new('seek -60 0').execute
+    render_nothing
+  end
+
+  def seek_right
+    Command.new('seek +60 0').execute
+    render_nothing
+  end
+
   def play
     url = params[:url]
     RECENTLY_PLAYED.insert(0, url)

@@ -1,15 +1,17 @@
 
-=h("..:: Good music 24/7 ::..")
+%h1
+  =h("..:: Good music 24/7 ::..")
 
-.pause
-  =link_to_remote "[I] Pause / Play", :url => { :action => "pause" }
-.up
-  =link_to_remote "[A] Volume Up", :url => { :action => "volume_up" }
-.down
-  =link_to_remote "[V] Volume Down", :url => { :action => "volume_down" }
+.control
+  =link_to_remote "[||] [|>]", :url => { :action => "pause" }, :html => { :title => 'Play / Pause' }
+  =link_to_remote "[<<]", :url => { :action => "seek_left" }, :html => { :title => 'seek back 1 minute' }
+  =link_to_remote "[>>]", :url => { :action => "seek_right" }, :html => { :title => 'seek forward 1 minute' }
+  =link_to_remote "[A]", :url => { :action => "volume_up" }, :html => { :title => 'Volume Up' }
+  =link_to_remote "[V]", :url => { :action => "volume_down" }, :html => { :title => 'Volume Down' }
+
 .url
-  =link_to_remote "[>] Change channel to:", :update => 'recent', :url => { :action => "play" }, :with => "'url=' + $F('url')"
-  =text_field_tag 'url'
+  =text_field_tag 'url', nil, :size => 50
+  =button_to_remote "Change channel!", :update => 'recent', :url => { :action => "play" }, :with => "'url=' + $F('url')"
 
 #recent
   = render :partial => 'recent'
