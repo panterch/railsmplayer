@@ -67,7 +67,7 @@ Rails::Initializer.run do |config|
 
   FIFO_NAME = '/tmp/railsmplayer'
   DEFAULT_URL = 'http://deepmix.ru/deepmix128.pls'
-  MPLAYER_OPT = '-cache 4096 -cache-min 2 -slave -quiet -ao alsa -mixer-channel Master'
+  MPLAYER_OPT = '-slave -quiet'
   RECENTLY_PLAYED = [ DEFAULT_URL ]
   LOG = 'log/mplayer.log'
 
