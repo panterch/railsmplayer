@@ -67,13 +67,14 @@ Rails::Initializer.run do |config|
 
   FIFO_NAME = '/tmp/railsmplayer'
   DEFAULT_URL = 'http://deepmix.ru/deepmix128.pls'
-  MPLAYER_OPT = '-cache 4096 -cache-min 1 -slave -quiet -ao alsa -mixer-channel Master'
+  MPLAYER_OPT = '-cache 4096 -cache-min 2 -slave -ao alsa -mixer-channel Master'
   RECENTLY_PLAYED = [ DEFAULT_URL ]
+  LOG = 'log/mplayer.log'
 
   `mkfifo #{FIFO_NAME}` unless File.exists? FIFO_NAME
   Thread.new do
     while true do
-      `mplayer #{MPLAYER_OPT} -input file=#{FIFO_NAME} #{DEFAULT_URL}`  
+      `mplayer #{MPLAYER_OPT} -input file=#{FIFO_NAME} #{DEFAULT_URL} >> #{LOG} 2>&1`  
       RAILS_DEFAULT_LOGGER.warn 'mplayer died - restarting'
     end
   end
