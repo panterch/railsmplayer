@@ -67,7 +67,7 @@ Rails::Initializer.run do |config|
 
   FIFO_NAME = '/tmp/railsmplayer'
   DEFAULT_URL = 'http://deepmix.ru/deepmix128.pls'
-  MPLAYER_OPT = '-slave -quiet -ao alsa -mixer-channel Master'
+  MPLAYER_OPT = '-cache 1024 -cache-min 5 -slave -quiet -ao alsa -mixer-channel Master'
   RECENTLY_PLAYED = [ DEFAULT_URL ]
 
   `mkfifo #{FIFO_NAME}` unless File.exists? FIFO_NAME

@@ -128,10 +128,16 @@ class CommandsController < ApplicationController
   end
 
   def play
-    RECENTLY_PLAYED.insert(0, params[:url])
+    url = params[:url]
+    RECENTLY_PLAYED.insert(0, url)
     RECENTLY_PLAYED.uniq!
 
-    Command.new('loadfile '+params[:url]).execute
+    cmd = 'loadfile'
+    if (url =~ /\.m3u$/) || (url =~ /\.pls$/)
+      cmd = 'loadlist'
+    end
+    
+    Command.new(cmd+' '+params[:url]).execute
     render :partial => 'recent'
   end
 
