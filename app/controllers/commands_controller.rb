@@ -143,7 +143,7 @@ class CommandsController < ApplicationController
     RECENTLY_PLAYED.uniq!
 
     cmd = 'loadfile'
-    if (url =~ /\.m3u/) || (url =~ /\.pls/)
+    if (url =~ /\.m3u/) || (url =~ /\.pls/) || (url =~ /\.asx/)
       cmd = 'loadlist'
     end
     
