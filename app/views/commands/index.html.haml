@@ -13,6 +13,7 @@
   =text_field_tag 'url', nil, :size => 50
   =button_to_remote "Change channel!", :update => 'recent', :url => { :action => "play" }, :with => "Form.Element.serialize('url')"
 
-#recent
-  = render :partial => 'recent'
+#info
+  = render :partial => 'info'
 
+= periodically_call_remote(:url => { :action => 'info' }, :frequency => '5', :update => 'info')

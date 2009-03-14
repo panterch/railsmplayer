@@ -1,0 +1,11 @@
+#recent
+  Recently Played (click to tune in again):
+  %ol
+    -Mplayer.instance.recent.each do |r|
+      %li 
+        =link_to_remote r, :update => 'recent', :url => { :action => "play", :url => r }
+
+#log
+  %pre
+    -Mplayer.instance.log.each do |l|
+      = h(l)

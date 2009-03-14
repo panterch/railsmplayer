@@ -26,6 +26,12 @@ input {
   font-size: 24px;
 }
 
+#log {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 10px;
+}
+
 .url {
   text-align: center;
   margin-top: 50px;

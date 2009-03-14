@@ -9,6 +9,7 @@ RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
+require 'thread'
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
@@ -64,19 +65,8 @@ Rails::Initializer.run do |config|
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
 
-
-  FIFO_NAME = '/tmp/railsmplayer'
   DEFAULT_URL = 'http://deepmix.ru/deepmix128.pls'
-  MPLAYER_OPT = '-slave -quiet'
-  RECENTLY_PLAYED = [ DEFAULT_URL ]
-  LOG = 'log/mplayer.log'
-
-  `mkfifo #{FIFO_NAME}` unless File.exists? FIFO_NAME
-  Thread.new do
-    while true do
-      `mplayer #{MPLAYER_OPT} -input file=#{FIFO_NAME} #{DEFAULT_URL} >> #{LOG} 2>&1`  
-      RAILS_DEFAULT_LOGGER.warn 'mplayer died - restarting'
-    end
-  end
+  MPLAYER_BIN = 'mplayer'
+  MPLAYER_OPT = '-slave -quiet -noconsolecontrols -idle'
 
 end

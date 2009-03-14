@@ -1,5 +1,0 @@
-Recently Played (click to tune in again):
-%ol
-  -RECENTLY_PLAYED.each do |r|
-    %li 
-      =link_to_remote r, :update => 'recent', :url => { :action => "play", :url => r }
