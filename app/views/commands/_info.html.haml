@@ -5,7 +5,7 @@
       %li 
         =link_to_remote r, :update => 'recent', :url => { :action => "play", :url => r }
 
-#log
+#log{}
   %pre
     -Mplayer.instance.log.each do |l|
       = h(l)

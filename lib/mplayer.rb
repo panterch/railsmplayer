@@ -51,7 +51,7 @@ class Mplayer
   end
 
   def seek_right
-    'seek +60 0'
+    execute 'seek +60 0'
   end
 
 protected
