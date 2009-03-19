@@ -24,7 +24,9 @@ class Mplayer
 
   def play( path )
     close
-    return debug('sorry, only http supported...') unless path =~ /^http/
+    unless (path =~ /^http/ ||  path =~ /^mms/)
+      return debug('sorry, only http & mms supported...') 
+    end
     path.gsub! /[^\w\.\:\-\=\/\?\&\ ]/, ''
     cmd = "#{MPLAYER_BIN} #{MPLAYER_OPT} '#{path}' 2>&1"
     debug(cmd)
