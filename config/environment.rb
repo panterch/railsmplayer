@@ -68,6 +68,6 @@ Rails::Initializer.run do |config|
 
   DEFAULT_URL = 'http://deepmix.ru/deepmix128.pls'
   MPLAYER_BIN = 'mplayer'
-  MPLAYER_OPT = '-slave -quiet -noconsolecontrols -ao oss -mixer-channel -idle -term-osd-esc ""'
+  MPLAYER_OPT = '-slave -quiet -noconsolecontrols -ao oss -mixer-channel vol -idle -term-osd-esc ""'
 
 end
